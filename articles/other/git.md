@@ -1,7 +1,7 @@
 # git
 
 ## 从服务器上拉取代码
-git clone http://10.9.19.245/CMS/frontend.git
+git clone https://github.com/comeonbob/weShare.git
 
 ## 创建本地分支并且关联远程分支develop
 git checkout develop
