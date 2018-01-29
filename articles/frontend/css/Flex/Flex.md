@@ -30,7 +30,7 @@ tags: Flex
 
 例1：
 
-![](/img/Flex/flexbox.png)
+![](./flexbox.png)
 
 上面是一个导航菜单，有三个选项，若此时产品经理要求我们去除第二个选项，只保留另外两个，我们
 
@@ -71,7 +71,7 @@ tags: Flex
 
 则另外两个各占1/2，使用方便。
 
-![](/img/Flex/flexbox2.png)
+![](./flexbox2.png)
 
 ## **语法:**
 
@@ -124,7 +124,7 @@ align-self: auto | flex-start | flex-end | center | baseline | stretch;
 
 经典案例：骰子的实现:
 
-![](/img/Flex/dice.png)
+![](./dice.png)
 
 ```
 	HTML:
