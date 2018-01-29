@@ -30,7 +30,7 @@ tags: Flex
 
 例1：
 
-![enter description here][1]
+![](/img/Flex/flexbox.png)
 
 上面是一个导航菜单，有三个选项，若此时产品经理要求我们去除第二个选项，只保留另外两个，我们
 
@@ -71,7 +71,7 @@ tags: Flex
 
 则另外两个各占1/2，使用方便。
 
-![enter description here][2]
+![](/img/Flex/flexbox2.png)
 
 ## **语法:**
 
@@ -124,7 +124,7 @@ align-self: auto | flex-start | flex-end | center | baseline | stretch;
 
 经典案例：骰子的实现:
 
-![enter description here][3]
+![](/img/Flex/dice.png)
 
 ```
 	HTML:
@@ -247,8 +247,3 @@ align-self: auto | flex-start | flex-end | center | baseline | stretch;
 ```
 
 详细用法可查看[阮一峰Flex 布局教程](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
-
-
-  [1]: ./images/flexbox.png "flexbox"
-  [2]: ./images/flexbox2.png "flexbox2"
-  [3]: ./images/dice.png "dice"
