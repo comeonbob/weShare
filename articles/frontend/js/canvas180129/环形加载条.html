@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+            background: #000;
+        }
+        canvas{
+            background:#fff;
+        }
+    </style>
+    <script>
+        function d2a(n){
+            return n*Math.PI/180;
+        }
+        window.onload=function(){
+            var oC=document.querySelector('canvas');
+            var gd=oC.getContext('2d');
+            var cx=oC.width/2;
+            var cy=oC.height/2;
+            var r=100;
+        }
+        function drawArc(s,e,color='black'){
+            gd.beginPath();
+            gd.arc(cx,cy,r,d2a(s-180),d2a(e-180),false);
+            gd.closePath();
+            gd.lineWidth='20px'
+            gd.strokeStyle=lg;
+            gd.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+</body>
+</html>
