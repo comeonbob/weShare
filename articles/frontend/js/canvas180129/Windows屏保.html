@@ -15,7 +15,7 @@
             overflow: hidden;
         }
         canvas{
-            background:#000;
+            background:#ccc;
         }
     </style>
     <script>
@@ -27,8 +27,8 @@
             oC.width=document.documentElement.clientWidth;
             oC.height=document.documentElement.clientHeight;
             var gd=oC.getContext('2d');
-            var N=5;
-            var Len=40;
+            var N=15;
+            var Len=3;
             var aPoint=[];
             var aOldPoint=[];
             for(var i=0;i<N;i++){
@@ -83,14 +83,14 @@
                         gd.lineTo(aOldPoint[i][j].x,aOldPoint[i][j].y);
                     }
                     gd.closePath();
-                    gd.strokeStyle='rgba(225,225,225,'+i/Len+')';
+                    gd.strokeStyle='rgba(0,0,0,'+i/Len+')';
                     gd.stroke();
                 }
             },30);
             function createPoint(point){//创建矩形
                 gd.beginPath();
                 gd.rect(point.x,point.y,1,1);
-                gd.fillStyle='#fff';
+                gd.fillStyle='#000';
                 gd.fill();
             }
         },false)
