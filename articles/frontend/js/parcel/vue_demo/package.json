@@ -1,0 +1,17 @@
+{
+  "name": "vue_demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "parcel-bundler": "^1.6.2",
+    "parcel-plugin-vue": "^1.5.0",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1"
+  }
+}
