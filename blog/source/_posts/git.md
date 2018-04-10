@@ -1,55 +1,58 @@
 ---
-title: git命令基础介绍
+title: git命令入门
+categories: Bob
+tags: 前端自动化
+comments: true
 ---
-# git命令基础介绍
+### 基础命令介绍
 
 - 从服务器上拉取代码
-``` bash
+` bash
 git clone https://github.com/comeonbob/weShare.git
-```
+`
 
 - 创建本地分支并且关联远程分支develop
-``` bash
+` bash
 git checkout develop
-```
+`
 - 更新本地分支develop
-``` bash
+` bash
 git pull --ff
-```
+`
 
 - 创建本地分支，并切换到feature
-``` bash
+` bash
 git checkout -b feature
-```
+`
 - 提交代码
-``` bash
+` bash
 git commit -a -m "xxx"
-```
+`
 
 - 切换开发分支拉取最新代码, 并返回feature分支(避免在develop分支上冲突)
-``` bash
+` bash
 git checkout develop
 git pull --ff
 git checkout feature
-```
+`
 
 - 合并分支 rebase （可能产生冲突）
-``` bash
+` bash
 git rebase develop
-```
+`
 
 - 切换至develop分支, 并合并分支
-``` bash
+` bash
 git checkout develop
 git merge --no-ff feature
-```
+`
 
 - 提交代码
-``` bash
+` bash
 git push
-```
+`
 ---
-# 其他参考学习
+### 其他参考学习
 
 - 配置git, 保存户名、密码等
 ``` bash
@@ -86,6 +89,9 @@ git push
 (11) git push                            //推送本地代码
 (12) git clone xxx                       //克隆远程分支到本地
 ```
+---
 
-> author : Bob  
-> date : 2018-04-08
+*Bob
+2018-04-08*
+
+
