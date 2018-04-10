@@ -1,5 +1,7 @@
 ---
 title: webpack优化实战
+categories: Bob
+tags: 前端自动化
 ---
 
 ## 背景
