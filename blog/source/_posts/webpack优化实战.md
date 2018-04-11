@@ -2,6 +2,7 @@
 title: webpack优化实战
 categories: Bob
 tags: 前端自动化
+date: "2018-03-29"
 ---
 
 ## 背景
