@@ -20,6 +20,7 @@
     "hexo-server": "^0.2.0"
   },
   "devDependencies": {
+    "hexo-generator-search": "^2.2.5",
     "hexo-helper-qrcode": "^1.0.2"
   }
 }
