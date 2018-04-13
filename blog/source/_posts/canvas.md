@@ -7,49 +7,49 @@ date: "2018-01-29"
 
 ## 介绍
 Canvas
-	获取绘图上下文
-	var gd = oC.getContext('2d');
+获取绘图上下文
+var gd = oC.getContext('2d');
 
-	重新开始路径
-	gd.beginPath();
+重新开始路径
+gd.beginPath();
 
-	开始
-	gd.moveTo(x,y)
-	结束
-	gd.lineTo(x,y)
+开始
+gd.moveTo(x,y)
+结束
+gd.lineTo(x,y)
 
-	闭合路径
-	gd.closePath();
+闭合路径
+gd.closePath();
 
-	描边
-	gd.stroke()
+描边
+gd.stroke()
 
-	描边颜色
-	gd.strokeStyle
+描边颜色
+gd.strokeStyle
 
-	线宽
-	gd.lineWidth
+线宽
+gd.lineWidth
 
-	填充
-	gd.fill()
+填充
+gd.fill()
 
-	填充颜色
-	gd.fillStyle
+填充颜色
+gd.fillStyle
 
-	清屏
-	gd.clearRect(x,y,w,h);
+清屏
+gd.clearRect(x,y,w,h);
 
-	画矩形
-		a)
-			gd.rect(x,y,w,h);
-			stroke()/fill()
-		b)
-			gd.fillRect(x,y,w,h)
-		c)
-			gd.strokeRect(x,y,w,h)
+画矩形
+	a)
+		gd.rect(x,y,w,h);
+		stroke()/fill()
+	b)
+		gd.fillRect(x,y,w,h)
+	c)
+		gd.strokeRect(x,y,w,h)
 
-	运动
-		先清屏，再画图
+运动
+先清屏，再画图
 
 画弧
 	gd.arc(cx,cy,r,s,e,b);
