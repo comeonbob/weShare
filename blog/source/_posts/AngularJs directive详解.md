@@ -1,8 +1,8 @@
 ---
-title: AngularJS 自定义指定directive使用
+title: AngularJS directive详解
 categories: Bob
 tags: JS
-date: "2017-12-20"
+date: "2018-03-28"
 ---
 
 最近，维护一个Angular 1项目，在用过vue中element-ui后， 想自己也写一些类似组件；同时对比下angular的指令，与vue的单文件组件的用法。

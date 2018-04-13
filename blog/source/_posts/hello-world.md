@@ -1,6 +1,6 @@
 ---
 title: How to use Hexo.
-categories: Common
+categories: Bob
 tags: 前端自动化
 date: "2018-04-02"
 ---

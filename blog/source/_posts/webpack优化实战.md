@@ -55,12 +55,12 @@ https://webpack.js.org/plugins/dll-plugin/ （官网）
 https://www.cnblogs.com/ghost-xyx/p/6472578.html
 
 2. **升级webpack和node**
-（1）webpack最新版本为v4+， 官方称对比v3, 性能提升了60%。这次优化时，还是用v2.7， 因为升级v4失败了。
-  优化时间： 待实践。
-  详细： https://blog.csdn.net/qq_26733915/article/details/79446460
-（2）升级node， node目前稳定版本为v8.9.4。保持最新版本能够保证编译性能，npm保持最新也能建立更高效的模块树以及提高解析速度。
-   优化时间： 30s+
-   详细： https://www.cnblogs.com/xinjie-just/p/7061619.html
+(1) webpack最新版本为v4+， 官方称对比v3, 性能提升了60%。这次优化时，还是用v2.7， 因为升级v4失败了。
+优化时间：待实践。
+详细: [https://blog.csdn.net/...](https://blog.csdn.net/qq_26733915/article/details/79446460)
+(2) 升级node， node目前稳定版本为v8.9.4。保持最新版本能够保证编译性能，npm保持最新也能建立更高效的模块树以及提高解析速度。
+优化时间：30s+
+详细：[www.cnblogs.com/xinjie](https://www.cnblogs.com/xinjie-just/p/7061619.html)
 
 3.  **多线程解析**
 (1) happypack, 多线程解析文件，如babel-loader等耗时较长的。 

@@ -4,16 +4,16 @@
 
 # Site
 title: We Share
-subtitle:
+subtitle: Youyu Esop Team's Blog
 description: share and grow up
 keywords: frontend, share, grow up
 author: "Bob Gao"
-language: "zh-Hans"
+language: "zh-CN"
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.bobgao.cn
+url: blog.bobgao.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
