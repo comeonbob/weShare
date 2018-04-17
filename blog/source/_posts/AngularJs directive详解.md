@@ -9,7 +9,7 @@ date: "2018-03-28"
 今天的主题就是编写一个消息框 messageBox.
 <!--more-->
 
-![](http://img.blog.csdn.net/20180129202300074?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iX2Jhb2Jhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![消息框](/img/angular_msgbox.png)
 
 ## 如何开始构思组件
 (1) 组件的结构（html）
