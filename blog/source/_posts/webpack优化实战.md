@@ -27,11 +27,11 @@ product: 从9分钟+优化到 13s
 2.  打包后的文件是否有重复引用的库，应该提出来。
 **举个栗子**：
 *优化前*
-![可视化打包文件](https://img-blog.csdn.net/2018040310240360?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JvYl9iYW9iYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![优化前打包文件](/img/webpack_before.png)
 从图中我们发现，打包后的文件中， 很多包含了node_modulles/echarts, zrender两个库。 此时，我们就可以用DllPlugin插件，把这两个第三方库提出来， 减少单个业务代码页面打包后的文件大小， 避免重复编译。
 
 *优化后*
-![这里写图片描述](https://img-blog.csdn.net/20180403102945389?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JvYl9iYW9iYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![优化后打包文件](/img/webpack_after.png)
 提取第三方库后，我们发现页面小了很多。 这时候又发现很多个文件都包含了公共代码src/utils/_serivce.js , 这种公共的业务代码也是常见的问题， 通常有以下几种办法
 
  -  按需加载  import { a } from xxx, 每个页面只引用需要的。需要配合export使用，修改源文件导出方式。
