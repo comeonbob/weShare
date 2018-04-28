@@ -1,7 +1,9 @@
-| title      | categories | tags | date       |
-| ---------- | ---------- | ---- | ---------- |
-| 微信小程序--入门篇 | Emfan      | JS   | 2018-04-27 |
-
+---
+title: 微信小程序--入门篇
+categories: Emfan
+tags: JS
+date: "2018-04-27"
+---
 
 
 >### 准备工作
@@ -46,31 +48,32 @@
       "navigationBarTitleText": "WeChat",
       "navigationBarTextStyle":"white",
       "enablePullDownRefresh":"true"    //导航栏能够下拉刷新
-    }
+    },
     "tabBar":{       //在“tabBar”中配置底端的标题栏信息
-  	"color":"#666",     //图片颜色为灰色
-  	"selectedColor":"#268dcd",  //图片被选中颜色为蓝色
-  	"borderStyle":"black",   //边框颜色为黑色
-  	"backgroundColor":"#fafafa",  //子标题栏背景色为白色
-  	"list":[     //"list"中存放底端的几个子导航栏信息，数量范围2~5
-  		{
-  			"pagePath":"pages/index/index",  //该子导航点击后要跳转的页面
-  			"iconPath":"images/icons/homeD.png",  //该子导航设置的图片，这里用的是图片的相对路径
-  			"selectedIconPath":"images/icons/homeS.png",  //该子导航被点击后显示的图片
-  			"text":"首页"   //该子导航显示的文字
-  		},
-  		{
-  			"pagePath":"pages/news/news",
-  			"iconPath":"images/icons/newsD.png",
-  			"selectedIconPath":"images/icons/newsS.png",
-  			"text":"新闻中心"
-  		}
-  	],
-  	"networkTimeout":{ //网络请求超时设置
-        "request": 10000,
-        "downloadFile": 10000
-  	}
-  	"debug":"true"   //设置是否开启debug模式
+      "color":"#666",     //图片颜色为灰色
+      "selectedColor":"#268dcd",  //图片被选中颜色为蓝色
+      "borderStyle":"black",   //边框颜色为黑色
+      "backgroundColor":"#fafafa",  //子标题栏背景色为白色
+      "list":[     //"list"中存放底端的几个子导航栏信息，数量范围2~5
+        {
+          "pagePath":"pages/index/index",  //该子导航点击后要跳转的页面
+          "iconPath":"images/icons/homeD.png",  //该子导航设置的图片，这里用的是图片的相对路径
+          "selectedIconPath":"images/icons/homeS.png",  //该子导航被点击后显示的图片
+          "text":"首页"   //该子导航显示的文字
+        },
+        {
+          "pagePath":"pages/news/news",
+          "iconPath":"images/icons/newsD.png",
+          "selectedIconPath":"images/icons/newsS.png",
+          "text":"新闻中心"
+        }
+      ]
+    },
+    "networkTimeout":{ //网络请求超时设置
+      "request": 10000,
+      "downloadFile": 10000
+    },
+    "debug":"true"   //设置是否开启debug模式
   }
   ```
 
