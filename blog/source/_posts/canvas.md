@@ -1,6 +1,6 @@
 ---
 title: canvas 的使用
-categories: emfan
+categories: Emfan
 tags: JS
 date: "2018-01-29"
 ---
