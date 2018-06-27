@@ -1,7 +1,7 @@
 ---
 title: 正则表达式（基础篇）
-categories: little.luo
-tags: 正则
+categories: Little
+tags: JS
 date: "2018-04-28"
 ---
 
