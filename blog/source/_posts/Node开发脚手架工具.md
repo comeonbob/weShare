@@ -127,7 +127,7 @@ npm install -g h5-clis
 h5-cli init koa2
 ```
 效果图：
-![初始化项目](https://img-blog.csdn.net/20180626201211274?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JvYl9iYW9iYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![初始化项目](/img/cli_npm.png)
 - koa2-project 项目生成，切换目录，安装依赖包，即可查看demo
 ```
 cd koa2-project
@@ -135,7 +135,7 @@ npm install
 node app.js
 ```
 效果图：
-![运行demo](https://img-blog.csdn.net/20180626201249813?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JvYl9iYW9iYW8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![运行demo](/img/cli_api.png)
 
 ### 脚手架利弊
 > 脚手架可以减少重复性的工作，开启一个新项目时候，不必重头开始，也不需要再旧的项目上删减，减少不必要的文件拷贝，可以大大提高工作效率；然而便利的同时，也容易忽略项目的本来面貌，技术的实现原理。 建议使用脚手架前，耐心了解生成模板框架 源码， 阅读其官网文档，从而知其然，也能知其所以然。
