@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="share and grow up"><title>webpack优化实战 | We Share</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.1"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">webpack优化实战</h1><a id="logo" href="/.">We Share</a><p class="description">Youyu Esop Team's Blog</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">webpack优化实战</h1><div class="post-meta">Mar 29, 2018<span> | </span><span class="category"><a href="/categories/Bob/">Bob</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2018/03/29/webpack优化实战/#vcomment"><span class="valine-comment-count" data-xid="/2018/03/29/webpack优化实战/"></span><span> 条评论</span></a><div class="post-content"><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着项目的推移， 第三库使用数量增加，业务代码更是成倍增加，不知不觉发现webpack构建速度却越来越慢，从当初的30s，变成5分钟以上。 与此同时，一个同学的项目也遇到了打包慢的问题。 于是下定决心，花两周潜心研究下如何提升webpack构建性能。</p>
+<h2 id="初步成果"><a href="#初步成果" class="headerlink" title="初步成果"></a>初步成果</h2><p>两周后，收获满满的。初步战果如下：<br>（1） 自己的项目： vue2(全家桶)+element-ui+axios+echarts+lodash+…  约120个页面<br> dev：从90s+ 优化到  41s<br> product: 从9分钟+ 优化到 43s<br>（2） 同学的项目： react + redux + antd + moment+ rc-table + …  约40个页面<br>dev:  从2分钟+ 优化到 12s<br>product: 从9分钟+优化到 13s</p>
+<h2 id="总结优化方法"><a href="#总结优化方法" class="headerlink" title="总结优化方法"></a>总结优化方法</h2><p>首先，优化思路是从webpack构建过程去分析，主要是解析和压缩优化。</p>
+<h4 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h4><p>(1)  <strong>webpack-bundle-analyzer</strong><br>可视化查看打包后的文件，以及文件包含的内容。<br>主要注意两点： </p>
+<ol>
+<li>每个打包后文件的大小，其实业务代码chunk包一般在20k以内。如果大了，就可能是把第三方库打包进去了。</li>
+<li>打包后的文件是否有重复引用的库，应该提出来。<br><strong>举个栗子</strong>：<br><em>优化前</em><br><img src="/img/webpack_before.png" alt="优化前打包文件"><br>从图中我们发现，打包后的文件中， 很多包含了node_modulles/echarts, zrender两个库。 此时，我们就可以用DllPlugin插件，把这两个第三方库提出来， 减少单个业务代码页面打包后的文件大小， 避免重复编译。</li>
+</ol>
+<p><em>优化后</em><br><img src="/img/webpack_after.png" alt="优化后打包文件"><br>提取第三方库后，我们发现页面小了很多。 这时候又发现很多个文件都包含了公共代码src/utils/_serivce.js , 这种公共的业务代码也是常见的问题， 通常有以下几种办法</p>
+<ul>
+<li>按需加载  import { a } from xxx, 每个页面只引用需要的。需要配合export使用，修改源文件导出方式。</li>
+<li>公用方法挂载到根实例, 如vue中， Vue.prototype._utils = _utils 。 也需要修改源文件，且不宜过大。</li>
+<li>Tree Shaking  打包后，抖落掉不需要的代码， 不用修改源码。</li>
+</ul>
+<p>（2）<strong>webpack  - -profile</strong><br>可以查看打包过程中，每个步骤的速度。如果某个步骤卡了很长时间，就把对应关键字放到github上搜索， 可以发现一些很好的解决方法。<br>其中，同学的那个项目，打包过程中卡住在91% additional asset processing， 而且卡住了几分钟。 后来在github的webpack项目的issue中找到解决办法， 升级webpack版本至2.7, 以及把extract-text-webpack-plugin库升级至2.1.2。 居然一下快了几分钟~</p>
+<hr>
+<p>另外， 把优化方法分成通用，开发，生产三类。<br>优先级从高到低，如下：</p>
+<h4 id="通用优化"><a href="#通用优化" class="headerlink" title="通用优化"></a>通用优化</h4><ol>
+<li><p><strong>使用 DllPlugin</strong><br>原理是把第三方库文件分离出来单独编译，并且缓存; 极大的减少业务页面的编译时间， 以及编译后的文件大小。<br>优化时间： 3分钟+<br>详细：<br><a href="https://webpack.js.org/plugins/dll-plugin/" target="_blank" rel="noopener">https://webpack.js.org/plugins/dll-plugin/</a> （官网）<br><a href="https://www.cnblogs.com/ghost-xyx/p/6472578.html" target="_blank" rel="noopener">https://www.cnblogs.com/ghost-xyx/p/6472578.html</a></p>
+</li>
+<li><p><strong>升级webpack和node</strong><br>(1) webpack最新版本为v4+， 官方称对比v3, 性能提升了60%。这次优化时，还是用v2.7， 因为升级v4失败了。<br>优化时间：待实践。<br>详细: <a href="https://blog.csdn.net/qq_26733915/article/details/79446460" target="_blank" rel="noopener">https://blog.csdn.net/…</a><br>(2) 升级node， node目前稳定版本为v8.9.4。保持最新版本能够保证编译性能，npm保持最新也能建立更高效的模块树以及提高解析速度。<br>优化时间：30s+<br>详细：<a href="https://www.cnblogs.com/xinjie-just/p/7061619.html" target="_blank" rel="noopener">www.cnblogs.com/xinjie</a></p>
+</li>
+<li><p><strong>多线程解析</strong><br>(1) happypack, 多线程解析文件，如babel-loader等耗时较长的。<br>还可以配合cache-loader使用。<br>优化时间： 15s左右<br>详细： <a href="https://github.com/amireh/happypack" target="_blank" rel="noopener">https://github.com/amireh/happypack</a><br>要求： webpack 2+<br>(2) thread-loader: 还没实践过，原理也是多线程解析。<br>优化时间： 待实践<br>详细： <a href="https://webpack.js.org/loaders/thread-loader/" target="_blank" rel="noopener">https://webpack.js.org/loaders/thread-loader/</a></p>
+</li>
+<li><p><strong>缓存</strong><br>cache-loader<br>优化时间： 约5s<br>详细： <a href="https://webpack.js.org/loaders/cache-loader/" target="_blank" rel="noopener">https://webpack.js.org/loaders/cache-loader/</a></p>
+</li>
+<li><p><strong>提取公共代码</strong><br>CommonsChunkPlugin<br>这次实践中使用了CommonsChunkPlugin，并没有什么明显效果， 然后就换成了DllPlugin。<br>也许，这两个项目都是单页应用，多页应用可能效果比较好。还是个疑惑的地方~<br>优化时间： 待实践<br>详细： <a href="https://webpack.js.org/plugins/commons-chunk-plugin/" target="_blank" rel="noopener">https://webpack.js.org/plugins/commons-chunk-plugin/</a></p>
+</li>
+<li><p><strong>其它</strong><br>（1） loaders应尽可能配置解析路径include参数，排除路径exclude参数， 减少解析时查询范围。<br>（2） Tree Shaking. 按需加载思想差不多，去掉多余的代码。<br>优化时间： 待实践。<br>详细： <a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">https://webpack.js.org/guides/tree-shaking/</a><br>（3） 第三库的选择， 尽量少用，或用精简的库替代；一些工具函数，最好用原生替代。</p>
+</li>
+</ol>
+<h4 id="开发环境优化"><a href="#开发环境优化" class="headerlink" title="开发环境优化"></a>开发环境优化</h4><ol>
+<li>在内存中编译 webpack-dev-middleware等</li>
+<li>devtool 设置成cheap-module-eval-source-map， 已经能满足调试需求， 编译能更快。<br>优化时间： 10s 左右</li>
+</ol>
+<h4 id="生产环境优化"><a href="#生产环境优化" class="headerlink" title="生产环境优化"></a>生产环境优化</h4><ol>
+<li><strong>多线程压缩</strong><br>库： webpack-parallel-uglify-plugin<br>顾名思义， 多线程压缩，配合缓存大大减少了压缩时间，替代了自带的UglifyJsPlugin<br>优化时间： 40s+<br>详细： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 多线程压缩插件</span><br><span class="line">const ParallelUglifyPlugin = require(&apos;webpack-parallel-uglify-plugin&apos;);</span><br><span class="line"></span><br><span class="line">plugins: [</span><br><span class="line">    new ParallelUglifyPlugin(&#123;</span><br><span class="line">      cacheDir: &apos;.cache/&apos;,</span><br><span class="line">      uglifyJS:&#123;</span><br><span class="line">        output: &#123;</span><br><span class="line">          comments: false</span><br><span class="line">        &#125;,</span><br><span class="line">        compress: &#123;</span><br><span class="line">          dead_code: true,</span><br><span class="line">          warnings: false,</span><br><span class="line">          drop_debugger: true,</span><br><span class="line">          drop_console: true</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      sourceMap: false</span><br><span class="line">    &#125;)</span><br><span class="line">   ]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.<strong>多线程编译</strong><br>库： parallel-webpack<br>优化时间： 待实践<br>详细： <a href="https://github.com/trivago/parallel-webpack" target="_blank" rel="noopener">https://github.com/trivago/parallel-webpack</a></p>
+<p>3.<strong>去掉source-map</strong><br>大多数情况，生产环境不需要详细源码。<br>优化时间： 10s+</p>
+<h2 id="分享优化过程"><a href="#分享优化过程" class="headerlink" title="分享优化过程"></a>分享优化过程</h2><p>解决问题的思路有时候更重要</p>
+<ol>
+<li>很多技术官网是解决问题最快的方式， 如webpack构建优化<a href="https://webpack.js.org/guides/build-performance/" target="_blank" rel="noopener">官网文章</a></li>
+<li>针对大部分第三方库的疑难杂症，在github上对应该库的issue，是最快解决问题的地方</li>
+<li>一时没有找到解决办法， 休息一下，下次也许就会有不一样的理解。</li>
+</ol>
+<h2 id="立个flag"><a href="#立个flag" class="headerlink" title="立个flag"></a>立个flag</h2><ul>
+<li>尽快完成待实践的技术部分，出下一篇优化文章。</li>
+<li>研究优化首页加载。</li>
+</ul>
+<hr>
+<ul>
+<li>Date :   2018-04-03</li>
+<li>Author : Bob</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.1" async></script><a class="article-share-link" data-url="blog.bobgao.cn/2018/03/29/webpack优化实战/" data-id="cjiwjk5bt000o7wdfcn5p2n67" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQXKDMAwF0Nz/0nTbmQbyJUFnYj+vOgkxPBaqJOv1itfxZ/3+/Oz6s0+udzvb84aFgYHxtYzjcl3fOMfkOyffvrkjBgbGBozkIa6jXA6+3rkX0DEwMDCSBC6hVoMpBgYGxpyRJ3a9R8fAwMC4K/B9KC8Had8jtTgGBsYXMvKu+////cj5BgYGxlcxjuKqFrdPpI9v9sHAwFiakQe4wnatkYukqL4+YMDAwFibMRnV6hXAveAbjY5hYGAsx6iWjjlpUgDnYxkYGBg7MCbhr3d4UH1NhdYbBgbGxoxegtgLwb3UEwMDY21GfptCNVwMpr0gi4GBsQ9jHgR7TbdqMVw4QsDAwFiOUS1ZJ8XtvIiNxiwwMDCWY0RfB8MT+ecJO2/enea5GBgYCzGqRWwvKeylhuVhCwwMjEUZk2bZJO3L0835gAgGBsYajPnW+XuqtuQKbx0DA2NRRrUofTooJ091WsRiYGAsysgvzZtx1RK0WqB+uAYDA2NRRi+89vLQ3shF9G8AAwNjG0aS2OWBuBdwR0khBgbGBoxeoOyNa4wOI5PaFwMDYwnGUVzXj5KXptXxjg+vHgMDY2nGJKZV2/p5wVwFY2Bg7MCoBtlqkTk5YCi8AgwMjA0YedO/elRZ/W21VsXAwMDIDwzyh+g1AZsHAxgYGBszemlitRmXB24MDIwdGHkhmg9V5L+9ofGHgYGxNOOuRG3eVpsfhWJgYCzH+AEoBhkGWclvKAAAAABJRU5ErkJggg==">分享</a><div class="tags"><a href="/tags/前端自动化/">前端自动化</a></div><div class="post-nav"><a class="pre" href="/2018/04/02/hello-world/">How to use Hexo.</a><a class="next" href="/2018/03/28/AngularJs directive详解/">AngularJS directive详解</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == true ? true : false;
+var verify = 'false' == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'OtBSbVyl8MJtJib4wdwKRilp-gzGzoHsz',
+  appKey:'AUvU6SxoIN1aVctrUXCPp5p9',
+  placeholder:'Just so so',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Bob/">Bob</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Emfan/">Emfan</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Little/">Little</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/JS/" style="font-size: 15px;">JS</a> <a href="/tags/前端自动化/" style="font-size: 15px;">前端自动化</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/27/Node开发脚手架工具/">Node开发脚手架工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/19/d3/">D3.js</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/31/es6 类class入门/">es6 类class入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/28/RegExp/">正则表达式（基础篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/wechat-program/">微信小程序--入门篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/js 遍历中异步操作/">JS 遍历中异步操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/version/">Version</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/02/hello-world/">How to use Hexo.</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/29/webpack优化实战/">webpack优化实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/28/AngularJs directive详解/">AngularJS directive详解</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/comeonbob/weShare/tree/develop" title="github" target="_blank">github</a><ul></ul><a href="https://blog.csdn.net/bob_baobao" title="Bob的个人博客" target="_blank">Bob的个人博客</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">We Share.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.1" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.0.1"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+   search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = '//hm.baidu.com/hm.js?' + '54010f4a3b1de3d0b50872a92210cec8';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.1"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.1"></script></div></body></html>

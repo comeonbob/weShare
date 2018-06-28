@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        body{
+            overflow: hidden;
+        }
+        canvas{
+            background:#ccc;
+        }
+    </style>
+    <script>
+        function rnd(n,m){
+            return Math.floor(Math.random()*(m-n)+n);
+        }
+        document.addEventListener('DOMContentLoaded',function(){
+            var oC=document.querySelector('canvas');
+            oC.width=document.documentElement.clientWidth;
+            oC.height=document.documentElement.clientHeight;
+            var gd=oC.getContext('2d');
+            var N=15;
+            var Len=3;
+            var aPoint=[];
+            var aOldPoint=[];
+            for(var i=0;i<N;i++){
+                aPoint[i]={
+                    x:rnd(0,oC.width),
+                    y:rnd(0,oC.height),
+                    iSpeedX:rnd(-10,10),
+                    iSpeedY:rnd(-10,10)
+                }
+            }
+            setInterval(function(){
+                gd.clearRect(0,0,oC.width,oC.height);
+                for(var i=0;i<aPoint.length;i++){
+                    if(aPoint[i].x<0||aPoint[i].x>=document.documentElement.clientWidth-1){
+                        aPoint[i].iSpeedX*=-1;
+                    }
+                    if(aPoint[i].y<0||aPoint[i].y>=document.documentElement.clientHeight-1){
+                        aPoint[i].iSpeedY*=-1;
+                    }
+                    aPoint[i].x+=aPoint[i].iSpeedX;
+                    aPoint[i].y+=aPoint[i].iSpeedY;
+                }
+                for(var i=0;i<aPoint.length;i++){
+                    createPoint(aPoint[i]);
+                }
+                
+                gd.beginPath();//一组矩形连接
+                gd.moveTo(aPoint[0].x,aPoint[0].y);
+                for(var i=1;i<aPoint.length;i++){
+                    gd.lineTo(aPoint[i].x,aPoint[i].y);
+                }
+                gd.closePath();
+                gd.strokeStyle='rgb(225,225,225)';
+                gd.stroke();
+                var arr=[];
+                for(var i=0;i<aPoint.length;i++){
+                    arr[i]={
+                        x:aPoint[i].x,
+                        y:aPoint[i].y,
+                        iSpeedX:aPoint[i].iSpeedX,
+                        iSpeedY:aPoint[i].iSpeedY
+                    }
+                }
+                aOldPoint.push(arr);
+                if(aOldPoint.length>Len){
+                    aOldPoint.shift();
+                }
+                for(var i=0;i<aOldPoint.length;i++){//多组矩形连接
+                    gd.beginPath();
+                    gd.moveTo(aOldPoint[i][0].x,aOldPoint[i][0].y);
+                    for(var j=1;j<aOldPoint[i].length;j++){
+                        gd.lineTo(aOldPoint[i][j].x,aOldPoint[i][j].y);
+                    }
+                    gd.closePath();
+                    gd.strokeStyle='rgba(0,0,0,'+i/Len+')';
+                    gd.stroke();
+                }
+            },30);
+            function createPoint(point){//创建矩形
+                gd.beginPath();
+                gd.rect(point.x,point.y,1,1);
+                gd.fillStyle='#000';
+                gd.fill();
+            }
+        },false)
+    </script>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+</html>
