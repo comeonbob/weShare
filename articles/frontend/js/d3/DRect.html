@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf8" />
+		<title>D3</title>
+		<style>
+			#drect {
+			  width: 400px;
+			  height: 400px;
+			  border: 1px solid #000;
+			}
+			.axis path,
+			.axis line{
+			  fill: none;
+			  stroke: black;
+			  shape-rendering: crispEdges;
+			}
+			.axis text {
+			  font-family: sans-serif;
+			  font-size: 11px;
+			}
+
+			.MyRect {
+			  /* fill: steelblue; */
+			}
+
+			.MyText {
+			  /* fill: white; */
+			  text-anchor: middle;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="drect"></div>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script>
+		    const width = 400
+		    const height = 400
+		    const svg = d3.select('#drect')
+		                  .append('svg')
+		                  .attr('width', width)
+		                  .attr('height', height)
+		    const dataset = [10, 20, 30, 40, 33, 24, 12, 5]
+		    const padding = {left:30, right:30, top:20, bottom:20}
+		    // const padding = {left: 0, right: 0, top: 0, bottom: 0}
+		    const xScale = d3.scale.ordinal()
+		                     .domain(d3.range(dataset.length))
+		                     .rangeRoundBands([0, width - padding.left - padding.right])
+		    const yScale = d3.scale.linear()
+		                     .domain([0, d3.max(dataset)])
+		                     .range([height - padding.top - padding.bottom, 0])
+		    const xAxis = d3.svg.axis()
+		                    .scale(xScale)
+		                    .orient('bottom')
+		    const yAxis = d3.svg.axis()
+		                    .scale(yScale)
+		                    .orient('left')
+		    const rectWidth = 4
+		    svg.selectAll('.MyRect')
+		        .data(dataset)
+		        .enter()
+		        .append('rect')
+		        .attr('class', 'MyRect')
+		        .attr('transform', `translate(${padding.left}, ${padding.top})`)
+		        .attr('x', function (d, i) {
+		          return xScale(i) + rectWidth / 2
+		        })
+		        .attr('width', xScale.rangeBand() - rectWidth)
+		        .attr('y',function(d){
+		          return yScale(d)
+		        })
+		        .attr('height', function(d){
+		          return height - padding.top - padding.bottom - yScale(d)
+		        })
+		        .attr('fill', 'steelblue')
+		        .on('mouseover', function () {
+		          d3.select(this)
+		            .attr('fill', 'yellow')
+		        })
+		        .on('mouseout', function () {
+		          d3.select(this)
+		            .transition()
+		            .duration(500)
+		            .attr('fill', 'steelblue')
+		        })
+
+		    svg.selectAll('.MyText')
+		       .data(dataset)
+		       .enter()
+		       .append('text')
+		       .attr('class', 'MyText')
+		       .attr('transform', `translate(${padding.left}, ${padding.top})`)
+		        .attr('x', (d, i) => {
+		          return xScale(i) + rectWidth / 2
+		        })
+		        .attr('y', d => {
+		          return yScale(d)
+		        })
+		        .attr('dx', () => {
+		          return (xScale.rangeBand() - rectWidth) / 2
+		        })
+		        .attr('dy', () => {
+		          return 20
+		        })
+		        .text(d => {
+		          return d
+		        })
+		    svg.append('g')
+		       .attr('class', 'axis')
+		       .attr('transform', `translate(${padding.left}, ${height - padding.bottom})`)
+		       .call(xAxis)
+		    svg.append('g')
+		       .attr('class', 'axis')
+		       .attr('transform', `translate(${padding.left}, ${padding.top})`)
+		       .call(yAxis)
+
+		</script>
+	</body>
+</html>
