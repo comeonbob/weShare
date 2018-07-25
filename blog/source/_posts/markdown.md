@@ -1,7 +1,12 @@
-# 欢迎使用Markdown编辑器
+---
+title: markdown 常用命令
+categories: Bob
+tags: JS
+date: "2018-07-25"
+---
 
 > Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。具体请参考[Github][2].
-
+<!--more-->
 -------------------
 
 ## 快捷键
