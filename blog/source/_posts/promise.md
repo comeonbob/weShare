@@ -1,22 +1,28 @@
-# Promise
+---
+title: Promise
+categories: Dawn
+tags: JS
+date: "2018-08-08"
+---
 
 ## 从callback和异步说起：
 
 JS是一门单线程语言，通过回调函数来实现异步和并发。由于回调函数的多层嵌套而造成代码的阅读性差和逻辑调理混乱被称之为回调地狱。为了解决回调地狱的问题，相继出现了promise和 await/async.
 
+<!--more-->
 ### Promise   Callback 对比
 
 1 promise更好的解耦 
 
-     promise将发起异步请求放在传入Promise的函数体中，而在获得异步返回后的行为则放在了then中，通过resolve或者reject来触发then中的事件处理函数，很好的做到解耦。
+promise将发起异步请求放在传入Promise的函数体中，而在获得异步返回后的行为则放在了then中，通过resolve或者reject来触发then中的事件处理函数，很好的做到解耦。
 
-    callback方式，直接传递callback handler。这使得具体callback失去了对具体事件处理调用的次数和时    机权利
+callback方式，直接传递callback handler。这使得具体callback失去了对具体事件处理调用的次数和时机权利
 
 2 callback回调地狱 
 
-     由于复杂的业务逻辑，常常需要嵌套的调用回调函数，使得代码逻辑混杂难以阅读和维护。
+由于复杂的业务逻辑，常常需要嵌套的调用回调函数，使得代码逻辑混杂难以阅读和维护。
 
-      Promise通过链式调用，在很大程度上缓解了这一问题，在更新的async/await中，更好的解决了这一问题。async/await可以看成是promise的语法糖。
+Promise通过链式调用，在很大程度上缓解了这一问题，在更新的async/await中，更好的解决了这一问题。async/await可以看成是promise的语法糖。
 
 ### 什么是promise
 
