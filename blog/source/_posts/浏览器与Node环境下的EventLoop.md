@@ -17,7 +17,7 @@ JS主线程从"任务队列"中读取事件，这个过程是循环不断的，�
 
 ---------
 
-###1、浏览器环境中的Event Loop
+### 1、浏览器环境中的Event Loop
 
 - 任务队列：
 宏任务(MacroTask)：script 中代码、setTimeout、setInterval、I/O、UI render；
@@ -32,7 +32,7 @@ JS主线程从"任务队列"中读取事件，这个过程是循环不断的，�
 
 ------------------
 
-###2、Node环境中的Event Loop
+### 2、Node环境中的Event Loop
 
 - 任务队列：
 microTask：微任务；
@@ -57,7 +57,7 @@ poll(轮询阶段)；
 进入下轮循环。
 
 
-###3、代码用例：
+### 3、代码用例：
 ```
 console.log('golb1');
 
