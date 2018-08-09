@@ -61,7 +61,7 @@
 
 ### 1.2 viewport meta tag 的引入
 
-为了更好的控制视口的大小比列，苹果公司在其safari浏览器中引入meta viewport（[UsingtheViewport](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html)），安卓以及各大浏览器厂商也都纷纷引入。下面这个标签是很多人接触移动端页面都会看到的。那么这个标签做了什么了①将布局视口宽度设置为理想的视口宽度width=device-width，**②根据初始缩放系数和理想视口宽度计算出可是视口，③将布局视口宽度设置为刚刚计算的可视视口宽度（布局视口宽度取②，③计算中值大的）**。 （现在看来，页面的初始布局宽度，以及放缩系数是可控靠谱的了，不容易啊，虽然这个标记被流行的移动浏览器支持，但目前还是草案）
+为了更好的控制视口的大小比例，苹果公司在其safari浏览器中引入meta viewport（[UsingtheViewport](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html)），安卓以及各大浏览器厂商也都纷纷引入。下面这个标签是很多人接触移动端页面都会看到的。那么这个标签做了什么了①将布局视口宽度设置为理想的视口宽度width=device-width，**②根据初始缩放系数和理想视口宽度计算出可是视口，③将布局视口宽度设置为刚刚计算的可视视口宽度（布局视口宽度取②，③计算中值大的）**。 （现在看来，页面的初始布局宽度，以及放缩系数是可控靠谱的了，不容易啊，虽然这个标记被流行的移动浏览器支持，但目前还是草案）
 
 ```javascript
 <meta name="viewport" content="width=device-width,initial-scale=1">
