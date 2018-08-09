@@ -329,7 +329,7 @@ initScale = 1 / dpr;
 >
 > vh unit：Equal to 1% of the height of the initial containing block.
 
- 1vw = 1%视口宽度，看到这个表达是不是心里面一惊喜，3.2的方法就是将屏幕分成多少份，然后根元素\(即html元素\)的font-size值，每一份用rem来表示。现在vm的出现就更符合技术需要了因为它自动将视口宽度分成了100份。
+ 1vw = 1%视口宽度，看到这个表达是不是心里面一惊喜，3.2的方法就是将屏幕分成多少份，然后根元素\(即html元素\)的font-size值，每一份用rem来表示。现在vw的出现就更符合技术需要了因为它自动将视口宽度分成了100份。
 
 ```text
 //假设屏幕屏幕宽度 等于布局宽度 等于可视窗口宽度。
@@ -339,18 +339,18 @@ initScale = 1 / dpr;
 // 此时就差将px 转换为 vw了（此处Sass函数举个例子）
 
 $base_width: 375;
-@function vm($px) {
+@function pxToVW($px) {
     @return ($px / $base_width) * 100vw;
 }
 // iPhone 6 设计稿中 某 div 宽度为 75 px 高度 75px 表达如下
 .haha {
-    width： 20vw;
-    height: 20vw;
+    width： pxToVW(75); // 20vw
+    height: pxToVW(75); // 20vw
 }
 //上述那段css在iPhone5下 表达的宽高是多少了
 .haha {
-    width： 20vw; // 320/100*20 = 64px
-    height: 20vw; // 320/100*20 = 64px
+    width： pxToVW(75); // 20vw   320/100*20 = 64px
+    height: pxToVW(75); // 20vw   320/100*20 = 64px
 }
 // 看下数字题 64/75 = 320/375  设计稿在屏幕上的显示等比放缩了
 ```
