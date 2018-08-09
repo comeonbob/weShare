@@ -335,27 +335,27 @@ initScale = 1 / dpr;
 //假设屏幕屏幕宽度 等于布局宽度 等于可视窗口宽度。
 //iPhone 6尺寸作为设计稿基准
 //<meta name="viewport" content="width=device-width,initial-scale=1">
-// 此时 1vm = 375/100 =3.75px;
-// 此时就差将px 转换为 vm了（此处Sass函数举个例子）
+// 此时 1vw = 375/100 =3.75px;
+// 此时就差将px 转换为 vw了（此处Sass函数举个例子）
 
 $base_width: 375;
 @function vm($px) {
-    @return ($px / 375) * 100vw;
+    @return ($px / $base_width) * 100vw;
 }
 // iPhone 6 设计稿中 某 div 宽度为 75 px 高度 75px 表达如下
 .haha {
-    width： 20vm;
-    height: 20vm;
+    width： 20vw;
+    height: 20vw;
 }
 //上述那段css在iPhone5下 表达的宽高是多少了
 .haha {
-    width： 20vm; // 320/100*20 = 64px
-    height: 20vm; // 320/100*20 = 64px
+    width： 20vw; // 320/100*20 = 64px
+    height: 20vw; // 320/100*20 = 64px
 }
 // 看下数字题 64/75 = 320/375  设计稿在屏幕上的显示等比放缩了
 ```
 
-vm好用,但它还存在兼容性问题，可以通过这个网站查阅 [Can I use](https://caniuse.com/#search=vw)。不过也有大神写了文章介绍怎么在实际项目去使用vm。
+vw好用,但它还存在兼容性问题，可以通过这个网站查阅 [Can I use](https://caniuse.com/#search=vw)。不过也有大神写了文章介绍怎么在实际项目去使用vw。
 
 ## 4.小结
 
