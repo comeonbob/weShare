@@ -1,5 +1,5 @@
 ---
-title: vue的双向绑定之事件观察者，订阅者
+title: ***讲讲观察vue观察者，订阅者***
 categories: Evel
 tags: Vue
 date: "2018-08-24"
@@ -7,14 +7,13 @@ date: "2018-08-24"
 
 
 ### 1、什么叫做双向绑定
-- 定义讲解：
-双向绑定：
-宏观：视图（view）更新导致模型（model）的更新，模型的更新导致视图的更新。
-微观：如果我们有一个user对象和一个name属性，一旦我们赋了一个新值给user.name,在UI上就会显示新的姓名了。同样地，如果UI包含了一个输入用户姓名的输入框，输入一个新值就应该会使user对象的name属性做出相应的改变。
+- **定义讲解**：
+**宏观**：视图（view）更新导致模型（model）的更新，模型的更新导致视图的更新。
+**微观**：如果我们有一个user对象和一个name属性,一旦我们赋了一个新值给user.name,在UI上就会显示新的姓名了。同样地，如果UI包含了一个输入用户姓名的输入框，输入一个新值就应该会使user对象的name属性做出相应的改变。
 
 ### 2、代码简单实现
 ```
-    js:
+    /*js*/
     Object.defineProperty(obj, "evel", {
         get: function() {
           console.log("get init");
@@ -29,8 +28,7 @@ date: "2018-08-24"
           obj.evel = event.target.value;
         });
     }
-
-    html:
+    /*html*/
     	<input type="text" id ="userName" />
 ```
  
