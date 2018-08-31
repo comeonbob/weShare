@@ -14,21 +14,21 @@ date: "2018-08-24"
 ```
     /*js*/
     Object.defineProperty(obj, "evel", {
-        get: function() {
-          console.log("get init");
-        },
-        set: function(val) {
-          document.getElementById("uName").innerText = val;
-        }
-      });
-      document
-        .getElementById("userName")
-        .addEventListener("keyup", function(event) {
-          obj.evel = event.target.value;
-        });
-    }
+      get: function() {
+        console.log("get init");
+      },
+      set: function(val) {
+        document.getElementById("userName").innerText = val;
+      }
+    });
+    document
+    .getElementById("uName")
+    .addEventListener("keyup", function(event) {
+      obj.evel = event.target.value;
+    });
     /*html*/
-    	<input type="text" id ="userName" />
+      <input type="text" id ="uName" />
+      <span id="userName"></span>
 ```
  
 ### 3、详细说说vue中的观察者，订阅者
@@ -153,6 +153,7 @@ class Dep {
     this.subscribers.forEach(sub => sub())
   }
 }
+// 观察者
 Object.keys(data).forEach(key => {
   let internalValue = data[key]
   const dep = new Dep()
@@ -167,6 +168,7 @@ Object.keys(data).forEach(key => {
     }
   })
 })
+// 订阅者
 target = () => {
   data.total = data.price * data.quantity
 }
@@ -174,3 +176,4 @@ target()
 data.price = 33
 data.total 
 ```
+可以发现的是每一次手动改变data对象中的属性，target函数就会自动执行。
