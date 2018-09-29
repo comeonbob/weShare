@@ -1,6 +1,6 @@
 ---
 title: Async
-categories: Little.Luo
+categories: Little
 tags: JS
 date: "2018-09-26"
 
@@ -47,7 +47,7 @@ JS的事件循环机制(Event Loop)。
 
 （1）回调函数。
 
-```
+``` javascript
 function a (callback1, callback2) {
 	setTimeout(() => {
 		console.log('a')

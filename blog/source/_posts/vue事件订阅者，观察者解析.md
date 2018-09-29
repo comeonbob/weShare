@@ -1,5 +1,5 @@
 ---
-title: ***讲讲观察vue观察者，订阅者***
+title: 讲讲观察vue观察者，订阅者
 categories: Evel
 tags: Vue
 date: "2018-08-24"
