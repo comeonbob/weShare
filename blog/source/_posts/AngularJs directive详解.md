@@ -1,7 +1,7 @@
 ---
 title: AngularJS directive详解
 categories: Bob
-tags: JS
+tags: Angular
 date: "2018-03-28"
 ---
 
