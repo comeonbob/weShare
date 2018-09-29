@@ -1,7 +1,7 @@
 ---
 title: Node 中 mysql 应用 -- 连接池的优势
 categories: Bob
-tags: JS
+tags: Node
 date: "2018-08-31"
 ---
 

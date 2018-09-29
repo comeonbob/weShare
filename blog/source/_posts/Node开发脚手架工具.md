@@ -1,7 +1,7 @@
 ---
 title: Node开发脚手架工具
 categories: Bob
-tags: JS
+tags: Node
 date: "2018-06-27"
 ---
 
