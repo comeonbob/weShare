@@ -1,11 +1,12 @@
 ---
 title: 如何在 JavaScript 中更好地使用数组
-categories: Ring.wu
+categories: Ring
 tags: JS
 date: "2018-09-29"
 ---
 
 数组原型方法有很多：
+```
 join()
 push()和pop()
 shift() 和 unshift()
@@ -29,7 +30,7 @@ entries()
 keys()
 values()
 inludes()
-
+```
 
 #### 合并数组
 ```javascript
