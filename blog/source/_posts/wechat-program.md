@@ -1,7 +1,7 @@
 ---
 title: 微信小程序--入门篇
 categories: Emfan
-tags: JS
+tags: 微信
 date: "2018-04-27"
 ---
 

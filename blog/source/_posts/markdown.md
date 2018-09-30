@@ -1,7 +1,7 @@
 ---
 title: markdown 常用命令
 categories: Bob
-tags: JS
+tags: 前端自动化
 date: "2018-07-25"
 ---
 
