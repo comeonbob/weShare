@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>blog.bobgao.cn/2018/10/30/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8ab%E5%81%9A%E6%8E%A5%E5%8F%A3%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2018-10-30T08:56:53.948Z</lastmod>
+    <loc>blog.bobgao.cn/how-to-use-JSArray/</loc>
+    <lastmod>2018-11-01T06:31:02.716Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/09/30/Javascript%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%8F%8A%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2018-09-30T08:24:13.457Z</lastmod>
+    <loc>blog.bobgao.cn/regExp-3/</loc>
+    <lastmod>2018-11-01T06:30:39.902Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/09/29/howToUseJSArray/</loc>
-    <lastmod>2018-09-30T08:18:52.591Z</lastmod>
+    <loc>blog.bobgao.cn/regExp-2/</loc>
+    <lastmod>2018-11-01T06:30:35.087Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/06/19/d3/</loc>
+    <loc>blog.bobgao.cn/js-for-async/</loc>
+    <lastmod>2018-11-01T06:30:23.663Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/Javascript-unit-test/</loc>
+    <lastmod>2018-11-01T06:30:09.040Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/flex/</loc>
+    <lastmod>2018-11-01T06:29:58.550Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/event-agent-and-bubbling/</loc>
+    <lastmod>2018-11-01T06:29:53.955Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/es6-class/</loc>
+    <lastmod>2018-11-01T06:29:50.159Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/angularJs-directive/</loc>
+    <lastmod>2018-11-01T06:29:42.121Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/async/</loc>
+    <lastmod>2018-11-01T06:29:34.694Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/eventLoop/</loc>
+    <lastmod>2018-11-01T06:29:29.888Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/regExp/</loc>
+    <lastmod>2018-11-01T06:29:08.999Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/scope-questions/</loc>
+    <lastmod>2018-11-01T06:29:01.102Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/mobile-adaptation/</loc>
+    <lastmod>2018-11-01T06:28:46.305Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/ab-test/</loc>
+    <lastmod>2018-11-01T06:27:58.021Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/webpack-optimize/</loc>
+    <lastmod>2018-11-01T06:26:29.063Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/vue-observer-subscriber/</loc>
+    <lastmod>2018-11-01T06:25:53.797Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/Node%20cli/</loc>
+    <lastmod>2018-11-01T06:24:17.840Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/node%20mysql%20pool/</loc>
+    <lastmod>2018-11-01T06:24:07.780Z</lastmod>
+  </url>  <url>
+    <loc>blog.bobgao.cn/d3/</loc>
     <lastmod>2018-09-29T08:33:51.117Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/06/27/Node%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2018-09-29T08:33:24.233Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2017/10/12/Flex/</loc>
-    <lastmod>2018-09-29T08:33:09.814Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/03/28/AngularJs%20directive%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2018-09-29T08:32:27.576Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/09/29/hybrid-jian-dan-liao-jie/</loc>
+    <loc>blog.bobgao.cn/hybrid-jian-dan-liao-jie/</loc>
     <lastmod>2018-09-29T08:30:25.919Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/07/25/markdown/</loc>
+    <loc>blog.bobgao.cn/markdown/</loc>
     <lastmod>2018-09-29T08:29:04.223Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/08/31/node%20%E4%B8%AD%20mysql%20%E5%BA%94%E7%94%A8%20--%20%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E4%BC%98%E5%8A%BF/</loc>
-    <lastmod>2018-09-29T08:28:54.780Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/04/27/wechat-program/</loc>
+    <loc>blog.bobgao.cn/wechat-program/</loc>
     <lastmod>2018-09-29T08:27:57.167Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/09/26/Async/</loc>
-    <lastmod>2018-09-29T07:12:02.204Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/08/24/vue%E4%BA%8B%E4%BB%B6%E8%AE%A2%E9%98%85%E8%80%85%EF%BC%8C%E8%A7%82%E5%AF%9F%E8%80%85%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2018-09-29T07:08:11.429Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/06/19/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E4%B8%8E%E5%86%92%E6%B3%A1/</loc>
-    <lastmod>2018-08-30T10:05:02.363Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/08/09/%E7%A7%BB%E5%8A%A8%E7%AB%AFweb%E9%A1%B5%E9%9D%A2%E9%80%82%E9%85%8D%E5%B0%8F%E7%BB%93/</loc>
-    <lastmod>2018-08-09T10:16:17.364Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8ENode%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84EventLoop/</loc>
-    <lastmod>2018-08-08T06:07:28.529Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/08/08/promise/</loc>
+    <loc>blog.bobgao.cn/promise/</loc>
     <lastmod>2018-08-08T06:05:36.034Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/07/27/RegExp_3/</loc>
-    <lastmod>2018-07-31T10:21:42.909Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/07/25/RegExp_2/</loc>
-    <lastmod>2018-07-25T10:14:20.525Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/05/31/es6%20%E7%B1%BBclass%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2018-06-29T08:15:54.830Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/06/28/scopeQuestions/</loc>
-    <lastmod>2018-06-29T08:11:41.142Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/04/28/RegExp/</loc>
-    <lastmod>2018-06-27T03:06:36.185Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/01/29/canvas/</loc>
+    <loc>blog.bobgao.cn/canvas/</loc>
     <lastmod>2018-06-27T02:51:12.438Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/04/26/js%20%E9%81%8D%E5%8E%86%E4%B8%AD%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-05-03T08:59:52.329Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/03/29/webpack%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/</loc>
-    <lastmod>2018-04-27T05:39:32.041Z</lastmod>
-  </url>  <url>
-    <loc>blog.bobgao.cn/2018/04/17/version/</loc>
+    <loc>blog.bobgao.cn/version/</loc>
     <lastmod>2018-04-27T05:39:32.037Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2018/04/02/hello-world/</loc>
+    <loc>blog.bobgao.cn/hello-world/</loc>
     <lastmod>2018-04-27T05:39:32.027Z</lastmod>
   </url>  <url>
-    <loc>blog.bobgao.cn/2017/04/03/git/</loc>
+    <loc>blog.bobgao.cn/git/</loc>
     <lastmod>2018-04-27T05:39:32.020Z</lastmod>
   </url>
 </urlset>
