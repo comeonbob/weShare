@@ -1,7 +1,7 @@
 ---
 title: Flex
 categories: Little
-tags: JS
+tags: CSS
 date: "2017-10-12"
 ---
 
