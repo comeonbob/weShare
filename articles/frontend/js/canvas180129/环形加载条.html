@@ -26,6 +26,7 @@
             var cx=oC.width/2;
             var cy=oC.height/2;
             var r=100;
+<<<<<<< 447b47dd0ccb6ff3ea0f52c6a6b383b1c6a17a3d
             var total = 240;
             var load = 0;
             var lg=gd.createLinearGradient(300,200,500,400);
@@ -56,6 +57,16 @@
                 gd.strokeStyle=lg;
                 gd.stroke();
             }
+=======
+        }
+        function drawArc(s,e,color='black'){
+            gd.beginPath();
+            gd.arc(cx,cy,r,d2a(s-180),d2a(e-180),false);
+            gd.closePath();
+            gd.lineWidth='20px'
+            gd.strokeStyle=lg;
+            gd.stroke();
+>>>>>>> aa
         }
     </script>
 </head>
