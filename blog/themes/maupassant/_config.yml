@@ -1,4 +1,5 @@
 fancybox: true ## If you want to use fancybox please set the value to true.
+forkme: true ## If you want to use fork me on the github button.
 disqus: ## Your disqus_shortname, e.g. username
 uyan: ## Your uyan_id. e.g. 1234567
 livere: ## Your livere data-uid, e.g. MTAyMC8zMDAxOC78NTgz
