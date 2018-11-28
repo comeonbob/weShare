@@ -75,10 +75,18 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: maupassant
 
-# Deployment
+# Deployment (failed, windows couldn't install rsync)
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: rsync
+  host: 119.29.113.160
+  user: root
+  root: /www/blogs/weShare/blog/public
+  port: 22
+  delete: true
+  verbose: true
+  ignore_errors: false
+
 
 # live 2d
 live2d:
