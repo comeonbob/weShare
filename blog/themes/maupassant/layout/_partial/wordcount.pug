@@ -1,0 +1,13 @@
+span(class="post-time")
+  span.post-meta-item-text= " | "
+  span(class="post-meta-item-icon")
+    i(class="fa fa-keyboard-o")
+    // span.post-meta-item-text= " 字数统计："
+    span.post-count= ' '+wordcount(page.content)
+    span.post-meta-item-text= ' 字'
+span(class="post-time") &nbsp; | &nbsp;
+  span(class="post-meta-item-icon")
+      i(class="fa fa-hourglass-half")
+      // span.post-meta-item-text= " 阅读时长："
+      span.post-count= ' '+min2read(page.content)
+      span.post-meta-item-text= " 分钟"
