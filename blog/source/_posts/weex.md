@@ -1,10 +1,9 @@
 ---
-title: *** weex入门篇(一)***
+title: weex入门篇(一)
 categories: Evel
 tags: weex,vue
 date: "2018-12-11"
 ---
-#  weex入门篇(一)
 
 Weex 致力于使开发者能基于当代先进的 Web 开发技术，使用同一套代码来构建 Android、iOS 和 Web 应用。
 

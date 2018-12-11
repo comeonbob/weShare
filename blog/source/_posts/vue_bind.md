@@ -1,5 +1,5 @@
 ---
-title: ***简易实现vue的双向绑定***
+title: 简易实现vue的双向绑定
 categories: Evel
 tags: Vue
 date: "2018-08-30"
