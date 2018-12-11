@@ -1,7 +1,7 @@
 ---
 title: weex入门篇(一)
 categories: Evel
-tags: weex,vue
+tags: weex
 date: "2018-12-11"
 ---
 
