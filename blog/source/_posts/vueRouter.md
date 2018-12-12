@@ -1,20 +1,10 @@
 ---
-<<<<<<< HEAD
-title: Promise
-categories: Dawn
-tags: JS
-date: "2018-08-08"
----
-
-# Vue Router
-=======
 title: vueRouter
 categories: Dawn
 tags: VUE
 date: "2018-12-12"
 ---
 
->>>>>>> a00ad07810804643c0593d23f14bdc9ebf00219a
 ### 应用场景： 单页面富应用
 **原理： 每次GET或者POST等请求在服务端有一个专门的正则配置列表，然后匹配到具体路径后，分发到不同的Controller,进行各种操作，将html返回给前端。**
 通过监听 popstate 和 hashchange事件，来探测路由变化
@@ -443,7 +433,6 @@ function resolveProps (route, config) {
   
 ```
 
-<<<<<<< HEAD
 ## 路由原理
 location改变路由跳转
 1. 监听事件changeHash popstate
@@ -453,11 +442,6 @@ location改变路由跳转
 
 调用API路由跳转
 go push replace三个路由跳转方法，通过调用mode对应的history的相关方法，触发transitionTo
-=======
-## hash html5(history) abstract
-  后面 hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。另外每次 hash 值的变化，还会触发hashchange 这个事件，通过这个事件我们就可以知道 hash 值发生了哪些变化。然后我们便可以监听
-  hashchange来实现更新页面部分内容的操作  
->>>>>>> a00ad07810804643c0593d23f14bdc9ebf00219a
 
 
 ```javascript
