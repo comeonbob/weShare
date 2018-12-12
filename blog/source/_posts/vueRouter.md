@@ -1,6 +1,12 @@
-# Vue Router
+---
+title: vueRouter
+categories: Dawn
+tags: VUE
+date: "2018-12-12"
+---
+
 ### 应用场景： 单页面富应用
-**原理： 每次GET或者POST等请求在服务端有一个专门的正则配置列表，然后匹配到具体路径后，分发到不同的Controller,进行各种操作，将html返回给前端。**   
+**原理： 每次GET或者POST等请求在服务端有一个专门的正则配置列表，然后匹配到具体路径后，分发到不同的Controller,进行各种操作，将html返回给前端。**
 通过监听 popstate 和 hashchange事件，来探测路由变化
 
 
@@ -294,9 +300,9 @@ this.$router.push('/non-existing')
 this.$route.params.pathMatch // 'non-existing'
 当使用*的时候，params会被自动加入一个pathMatch属性，这个属性会存储*代表的字符串
 
-###传值
+### 传值
 
-###Boolean mode
+### Boolean mode
 ```javascript
 // when props is set to true, the route.params will be set as the component props
 const router = new VueRouter({
@@ -311,7 +317,7 @@ const router = new VueRouter({
 })
 ```
 
-###Object mode
+### Object mode
 ```javascript
 // when props is an object, this will be set as the component props as-is. Useful for when the
 // props are static
@@ -324,7 +330,7 @@ const router = new VueRouter({
 })
 ```
 
-###FunctionMode
+### FunctionMode
 ``` javascript
 // create a function that return props. allows you to cast parameters into other types
 const router = new VueRouter({
@@ -387,7 +393,7 @@ declare type RouteConfig = {
   
 ```
 
-##hash html5(history) abstract
+## hash html5(history) abstract
   后面 hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。另外每次 hash 值的变化，还会触发hashchange 这个事件，通过这个事件我们就可以知道 hash 值发生了哪些变化。然后我们便可以监听
   hashchange来实现更新页面部分内容的操作  
 
