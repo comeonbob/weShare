@@ -70,7 +70,7 @@ render: h => h(App)   // h means createElement
 
 ## 源码分析
 
-Vue-router是Evan开发的官方组件，是Vue全家桶的重要一员。Vue的组件必须要有install方法，在Vue.use()的时候来进行调用。通常格式如下
+Vue-router是Evan开发的官方组件，是Vue全家桶的重要一员。Vue的组件必须要有install方法，在Vue.use()的时候来进行调用。通常格式如下
 
 ```javascript
 MyPlugin.install = function (vue, optios) {
@@ -141,7 +141,7 @@ export function install (Vue) {
 ```
 
 
-### VueRouter构造函数
+### VueRouter构造函数
 ```javascript
 var VueRouter = function VueRouter (options) {
   if ( options === void 0 ) options = {};
@@ -339,20 +339,20 @@ const User = {
 }
 ```
 
-### 通配符 *
+### 通配符 \*
 {
-path: '*'
+path: '\*'
 }
 {
-path: '/user-*'
+path: '/user-\*'
 }
-* 通配符代表任意个任意字符
+\* 通配符代表任意个任意字符
 this.$router.push('/user-admin')
 this.$route.params.pathMatch  // 'admin'
 
 this.$router.push('/non-existing')
 this.$route.params.pathMatch // 'non-existing'
-当使用*的时候，params会被自动加入一个pathMatch属性，这个属性会存储*代表的字符串
+当使用\*的时候，params会被自动加入一个pathMatch属性，这个属性会存储\*代表的字符串
 
 ### 传值
 
