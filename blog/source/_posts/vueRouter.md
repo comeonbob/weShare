@@ -1,3 +1,10 @@
+---
+title: Promise
+categories: Dawn
+tags: JS
+date: "2018-08-08"
+---
+
 # Vue Router
 ### 应用场景： 单页面富应用
 **原理： 每次GET或者POST等请求在服务端有一个专门的正则配置列表，然后匹配到具体路径后，分发到不同的Controller,进行各种操作，将html返回给前端。**   
@@ -5,11 +12,66 @@
 
 
 ## 对比:  
-后端路由：页面可以在服务端渲染后直接返回给浏览器，不用等待前端加载任何js和css。前端开发者需要安装整套后端服务，必要时还得学习后端语言，html、数据、逻辑容易混为一谈
+后端路由：页面可以在服务端渲染后直接返回给浏览器，不用等待前端加载任何js和css。前端开发者需要安装整套后端服务，必要时还得学习后端语言。html、数据、逻辑容易混为一谈
 
 
 前端路由： 前后端分离，后端专注数据，前端专注交互和可视化。需要花费时间在加载js和css上
 
+###vue-router基本使用
+
+1. routes配置  
+resolve => require([path], resolve)的写法是为了懒加载  
+```javascript
+const Routes = [
+  {
+    path: '/index',
+    component: (resolve) => require(['./views/index.vue'], resolve)
+  },
+  {
+    path: '/about',
+    component: (resolve) => require(['./views/about.vue'],resolve)
+  }
+]
+```
+
+2. routerConfig
+``` javascript
+const RouterConfig = {
+  //optional mode  history,abstract,hash
+  mode: 'history',
+  routes: Routes 
+}
+```
+
+3 router实例化
+``` javascript
+const router = new VueRouter(RouterConfig)
+可以通过router.addRoutes(routes)来添加routes
+```
+
+4 在vue中注册
+``` javascript
+new Vue({
+el: '#app',
+router,
+render: h => h(App)   // h means createElement
+})
+```
+
+5 app.vue里添加
+```javascript
+  <router-view></router-view>
+```
+
+
+6 跳转方式
+```javascript
+<router-link to="path"></router-link>
+```
+
+## 源码分析
+
+Vue-router是Evan开发的官方组件，是Vue全家桶的重要一员。Vue的组件必须要有install方法，在Vue.use()的时候来进行调用。通常格式如下
 
 ```javascript
 MyPlugin.install = function (vue, optios) {
@@ -24,7 +86,10 @@ Vue.mixin({
 mounted: function() {}
 })
 }
+```
 
+下面是Vue-router的install方法的具体内容
+```javascript
 export function install (Vue) {
   // 防止重复安装
   if (install.installed && _Vue === Vue) return
@@ -79,7 +144,18 @@ export function install (Vue) {
 
 ### VueRouter构造函数
 ```javascript
-var mode = options.mode || 'hash';
+var VueRouter = function VueRouter (options) {
+  if ( options === void 0 ) options = {};
+
+  this.app = null;
+  this.apps = [];
+  this.options = options;
+  this.beforeHooks = [];
+  this.resolveHooks = [];
+  this.afterHooks = [];
+  this.matcher = createMatcher(options.routes || [], this);
+
+  var mode = options.mode || 'hash';
   this.fallback = mode === 'history' && !supportsPushState && options.fallback !== false;
   if (this.fallback) {
     mode = 'hash';
@@ -100,66 +176,51 @@ var mode = options.mode || 'hash';
       this.history = new AbstractHistory(this, options.base);
       break
     default:
-      {
+      if (process.env.NODE_ENV !== 'production') {
         assert(false, ("invalid mode: " + mode));
       }
   }
+};
+
 ```
+1. history,vue-router的关键配置，决定vue-router的路由跳转方式  
 HashHistory, HTML5History, AbstractHistory继承自History.  
 History中核心的方法： transitionTo()  , confirmTransition()中运行runQueue()
+HashHistory通过监听hashChange事件来进行跳转  
+HTML5History通过监听popstate  
+AbstractHistory运用非浏览器的情况下（例如移动端）  
+default: hashHistory
+HTML5History 可以不用写#
+2. createMatcher，进行路由匹配，匹配成功调用_createRoute,建立路由对象，进行跳转.
+router.match实际上就是封装在createMatcher产生的对象中的暴露方法。
 
 
-###vue-router基本使用
-
-1. routes配置  
-resolve => require([path], resolve)的写法是为了懒加载  
 ```javascript
-const Routes = [
-  {
-    path: '/index',
-    component: (resolve) => require(['./views/index.vue'], resolve)
-  },
-  {
-    path: '/about',
-    component: (resolve) => require(['./views/about.vue'],resolve)
-  }
-]
+History.prototype.transitionTo = function transitionTo (location, onComplete, onAbort) {
+    var this$1 = this;
+
+  var route = this.router.match(location, this.current);
+  this.confirmTransition(route, function () {
+    this$1.updateRoute(route);
+    onComplete && onComplete(route);
+    this$1.ensureURL();
+
+    // fire ready cbs once
+    if (!this$1.ready) {
+      this$1.ready = true;
+      this$1.readyCbs.forEach(function (cb) { cb(route); });
+    }
+  }, function (err) {
+    if (onAbort) {
+      onAbort(err);
+    }
+    if (err && !this$1.ready) {
+      this$1.ready = true;
+      this$1.readyErrorCbs.forEach(function (cb) { cb(err); });
+    }
+  });
+};
 ```
-
-2. routerConfig
-``` javascript
-const RouterConfig = {
-  //optional mode  history,abstract,hash
-  mode: 'history',
-  routes: Routes 
-}
-```
-
-3 router实例化
-``` javascript
-const router = new VueRouter(RouterConfig)
-```
-
-4 在vue中注册
-``` javascript
-new Vue({
-el: '#app',
-router,
-render: h => h(App)   // h means createElement
-})
-```
-
-5 app.vue里添加
-```javascript
-  <router-view></router-view>
-```
-
-
-6 跳转方式
-```javascript
-<router-link to="path"></router-link>
-```
-
 ## 两个组件
 
 <router-view>,<router-link>两个组件都是在src/components/中定义的，  
@@ -294,9 +355,9 @@ this.$router.push('/non-existing')
 this.$route.params.pathMatch // 'non-existing'
 当使用*的时候，params会被自动加入一个pathMatch属性，这个属性会存储*代表的字符串
 
-###传值
+### 传值
 
-###Boolean mode
+### Boolean mode
 ```javascript
 // when props is set to true, the route.params will be set as the component props
 const router = new VueRouter({
@@ -311,7 +372,7 @@ const router = new VueRouter({
 })
 ```
 
-###Object mode
+### Object mode
 ```javascript
 // when props is an object, this will be set as the component props as-is. Useful for when the
 // props are static
@@ -324,7 +385,7 @@ const router = new VueRouter({
 })
 ```
 
-###FunctionMode
+### FunctionMode
 ``` javascript
 // create a function that return props. allows you to cast parameters into other types
 const router = new VueRouter({
@@ -355,20 +416,6 @@ function resolveProps (route, config) {
   }
 }
 
-declare type RouteConfig = {
-  path: string;
-  name?: string;
-  component?: any;
-  components?: Dictionary<any>;
-  redirect?: RedirectOption;
-  alias?: string | Array<string>;
-  children?: Array<RouteConfig>;
-  beforeEnter?: NavigationGuard;
-  meta?: any;
-  props?: boolean | Object | Function;
-  caseSensitive?: boolean;
-  pathToRegexpOptions?: PathToRegexpOptions;
-}
 
 // View component中进行props传值。 如果component中没有该props，则存储在attr中
  var propsToPass = data.props = resolveProps(route, matched.props && matched.props[name]);
@@ -387,9 +434,42 @@ declare type RouteConfig = {
   
 ```
 
-##hash html5(history) abstract
-  后面 hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。另外每次 hash 值的变化，还会触发hashchange 这个事件，通过这个事件我们就可以知道 hash 值发生了哪些变化。然后我们便可以监听
-  hashchange来实现更新页面部分内容的操作  
+## 路由原理
+location改变路由跳转
+1. 监听事件changeHash popstate
+2. 触发监听事件，createMather.match进行匹配，匹配成功creatRoute
+3. transitionTo进行跳转，confirmTransition判断是否跳转成功
+4. 执行相关钩子函数，进行render，执行router-vue的相关render，包括子组件渲染，具名slot等渲染我们需要展示的组件
+
+调用API路由跳转
+go push replace三个路由跳转方法，通过调用mode对应的history的相关方法，触发transitionTo
 
 
-  HTML5标准发布。多了两个 API，pushState 和 replaceState，通过这两个 API 可以改变 url 地址且不会发送请求。同时还有 popstate 事件。通过这些就能用另一种方式来实现前端路由了，但原理都是跟 hash 实现相同的。用了 HTML5 的实现，单页路由的 url 就不会多出一个#，变得更加美观。
+```javascript
+VueRouter.prototype.onReady = function onReady (cb, errorCb) {
+  this.history.onReady(cb, errorCb);
+};
+
+VueRouter.prototype.onError = function onError (errorCb) {
+  this.history.onError(errorCb);
+};
+
+VueRouter.prototype.push = function push (location, onComplete, onAbort) {
+  this.history.push(location, onComplete, onAbort);
+};
+
+VueRouter.prototype.replace = function replace (location, onComplete, onAbort) {
+  this.history.replace(location, onComplete, onAbort);
+};
+
+VueRouter.prototype.go = function go (n) {
+  this.history.go(n);
+};
+```
+
+几个概念
+1.history 决定路由跳转方式的对象
+2.match 进行匹配，匹配成功生成route
+3.route 形成路由，带有当前页面的路由信息
+4.record 配置路由时候的路由map，会被保存为一个一个的record，分别存在pathMap,pathList,nameMap用于进行匹配
+5.钩子  在confirmTransition中插入钩子，通过一个matched对象
