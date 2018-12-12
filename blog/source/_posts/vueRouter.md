@@ -17,7 +17,7 @@ date: "2018-08-08"
 
 前端路由： 前后端分离，后端专注数据，前端专注交互和可视化。需要花费时间在加载js和css上
 
-###vue-router基本使用
+### vue-router基本使用
 
 1. routes配置  
 resolve => require([path], resolve)的写法是为了懒加载  
