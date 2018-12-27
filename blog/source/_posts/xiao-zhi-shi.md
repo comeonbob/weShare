@@ -1,4 +1,9 @@
-# 学习webpack前，可以了解的小知识点。
+---
+title: 学习webpack前，可以了解的小知识点
+categories: Xiaobu
+tags: webpack
+date: "2018-12-27"
+---
 
 阅读前：文章大概是写，简单用过webpack,想继续深入了解webpack前需要了解的知识。但文章内容跟webpack使用关系并不大。
 
