@@ -15,13 +15,13 @@ date: "2018-12-27"
 4. webpack的小点
 5. 小结
 
-###  1. Object.defineProperty
+##  1. Object.defineProperty
 
 ![](/img/xiaozhishi/1.jpg)
 
 属性：**数据属性（data property）**和**存取器属性（accessor property）,**与属性相关联的值是**属性特性。**
 
-#### **1.1属性的特性**
+### **1.1属性的特性**
 
 数据属性（data property）的特性：value，writable，enumerable，configurable。 
 
@@ -92,7 +92,7 @@ document
 </script>
 ```
 
-###  2.call 和apply
+##  2.call 和apply
 
 函数的调用方式有4种
 
@@ -168,7 +168,7 @@ call: [参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference
 ]);
 ```
 
-###  3.模块化规范
+##  3.模块化规范
 
 ![](/img/xiaozhishi/mo.jpg)
 
@@ -184,9 +184,9 @@ function (global, factory) {
 }
 ```
 
-###  4.webpack的小点
+##  4.webpack的小点
 
-#### **4.1** webpack的几个思考
+### **4.1** webpack的几个思考
 
   webpack是什么？
 
@@ -198,7 +198,7 @@ function (global, factory) {
 
   webpack深入探索？
 
-#### **4.2**简述webpack的版本更新
+### **4.2**简述webpack的版本更新
 
 **Webpack V1**
 
@@ -230,7 +230,7 @@ function (global, factory) {
         json: 只支持JSON数据，可以通过require和import来使用。  
         webassembly/experimental: 只支持wasm模块，目前处于试验阶段 
 
-#### **4.3   4个核心概念**
+### **4.3   4个核心概念**
 
 ![](/img/xiaozhishi/webpack.jpg)
 
@@ -242,7 +242,7 @@ function (global, factory) {
 
 **Plugins:** 代码分割,参与打包整个过程 ,打包优化和压缩,配置编译时的变量
 
-###  5.小结
+##  5.小结
 
   文中例子比较粗糙，理解不准确之处，还请教正。关于学习webpack前，可以了解的小知识点，也只是我自己在这个 阶段了解过的点，还有很多重要的点并未提及，要真的去理解webpack，还需多看[文档](https://webpack.js.org/concepts/)，代码实践。
 
