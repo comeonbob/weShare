@@ -5,7 +5,7 @@ tags: swagger
 date: "2018-12-28"
 ---
 
-##认识Swagger  
+## 认识Swagger  
 > Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。
 总体目标是使客户端和文件系统作为服务器以同样的速度来更新文件的方法，参数和模型紧密集成到服务器端的代码，允许API来始终保持同步。 https://swagger.io/docs/
 
@@ -15,7 +15,7 @@ date: "2018-12-28"
 
 **现在的网站架构基本都前端渲染、前后端分离的形态，前端和后端通过API接口来联系，swagger就是一款让你更好的书写API文档的框架。**
 
-##Swagger工具  
+## Swagger工具  
 swagger的生态使用图:
 ![](/img/swagger/a.png)
 其中，红颜色的是swaggger官网方推荐的
@@ -28,11 +28,11 @@ yaml 文件用的是 YAML 语法风格；json 文件用的是 JSON 语法风格�
 3. **swagger-codegen**  
 代码生成器，脚手架。一个模板驱动引擎，通过分析用户Swagger资源声明以各种语言生成客户端代码。Java应用的挺多。
 
-##应用场景  
+## 应用场景  
 - 如果你的 RESTful API 接口都开发完成了，你可以用 Swagger-editor 来编写 API 文档（ yaml 文件 或 json 文件），然后通过 Swagger-ui 来渲染该文件，以非常美观的形式将你的 API 文档，展现给你的团队或者客户。
 - 如果你的 RESTful API 还未开始，也可以使用 Swagger 生态，来设计和规范你的 API，以 Annotation （注解）的方式给你的源代码添加额外的元数据。这样，Swagger 就可以检测到这些元数据，自动生成对应的 API 描述信息。也就是说，Swagger 支持自动生成 API 文档。
 
-##实践
+## 实践
 1. **demo1：直接使用swagger-ui** 
 ```javascript
 git clone https://github.com/swagger-api/swagger-ui.git
