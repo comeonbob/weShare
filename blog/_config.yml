@@ -83,7 +83,7 @@ theme: maupassant
 
 # live 2d
 live2d:
-  enable: true
+  enable: false
   scriptFrom: local
   model:
     use: live2d-widget-model-koharu
