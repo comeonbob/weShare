@@ -1,7 +1,7 @@
 ---
 title: Vue双向数据绑定
 categories: Little
-tags: [Vue]
+tags: Vue
 date: "2020-03-30"
 ---
 
