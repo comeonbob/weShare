@@ -1,11 +1,10 @@
 ---
-title: Vue生命周期
+title: Vue源码解析--全局API
 categories: Emfan
 tags: Vue
 date: 2020-05-01
 ---
 
-### Vue源码解析--全局API
 
 #### 一、调用方式：
 
